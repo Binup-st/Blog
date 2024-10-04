@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Signin from './pages/Signin'
-import Signup from './pages/Signup'
+import SignIn from './pages/SignIn'
+import SignUp from './pages/SignUp'
 import Dashboard from './pages/Dashboard'
 import Home from './pages/Home'
 import About from './pages/About'
@@ -16,8 +16,8 @@ export default function App() {
       <Routes>
         <Route path='/' element={<Home/>} />
         <Route path='/about' element={<About/>} />
-        <Route path='/signin' element={<Signin/>} />
-        <Route path='/signup' element={<Signup/>} />
+        <Route path='/signin' element={<SignIn/>} />
+        <Route path='/signup' element={<SignUp/>} />
         <Route path='/dashboard' element={<Dashboard/>} />
         <Route path='/projects' element={<Projects/>} />
 
