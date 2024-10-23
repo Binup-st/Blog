@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { toggleTheme } from "../redux/theme/themeSlice";
 
 export default function Header() {
-  const { currentUsers } = useSelector((state) => state.user);
+  const { currentUser } = useSelector((state) => state.user);
   const {theme} = useSelector((state)=> state.theme)
   const path = useLocation().pathname;
   const dispatch = useDispatch()
@@ -22,7 +22,7 @@ export default function Header() {
           </span>
           Blog
         </Link>
-        <form>
+        <form onSubmit={(e)=>e.preventDefault()}>
           <TextInput
             type="text"
             placeholder="Search..."
@@ -37,26 +37,25 @@ export default function Header() {
           <Button className="w-12 h-10 hidden sm:inline" color="gray" pill onClick={()=>dispatch(toggleTheme())}>
             {theme ==='dark'? <FaSun />: <FaMoon />}
           </Button>
-          {console.log(currentUsers)}
-          {currentUsers ? (
+          {currentUser ? (
             <Dropdown
             arrowIcon = {false}
               inline
               label={
-                <Avatar alt="user" img={currentUsers.profilePicture} rounded />
+                <Avatar alt="user" img={currentUser.profilePicture} rounded />
               }
             > 
               <Dropdown.Header>
-                <span className="block text-sm">@{currentUsers.username}</span>
+                <span className="block text-sm">@{currentUser.username}</span>
                 <span className="block text-sm font-medium truncate">
-                  @{currentUsers.email}
+                  @{currentUser.email}
                 </span>
               </Dropdown.Header>
               <Link to={"/dashboard?tab=profile"}>
                 <Dropdown.Item>Profile</Dropdown.Item>
-                <Dropdown.Divider />
-                <Dropdown.Item>Sign Out</Dropdown.Item>
               </Link>
+              <Dropdown.Divider />
+              <Dropdown.Item>Sign Out</Dropdown.Item>
             </Dropdown>
           ) : (
             <Link to="/signin">
